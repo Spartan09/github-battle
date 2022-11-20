@@ -1,11 +1,6 @@
 export function fetchPopularRepos(language) {
   const endpoint = window.encodeURI(
-    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`,
-    {
-      headers: {
-        authorization: `token ${process.env.authorization_token}`,
-      },
-    }
+    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
   );
 
   return fetch(endpoint)
@@ -28,11 +23,7 @@ function getErrorMsg(message, username) {
 }
 
 function getProfile(username) {
-  return fetch(`https://api.github.com/users/${username}`, {
-    headers: {
-      authorization: `token ${process.env.authorization_token}`,
-    },
-  })
+  return fetch(`https://api.github.com/users/${username}`)
     .then((res) => res.json())
     .then((profile) => {
       if (profile.message) {
@@ -44,11 +35,7 @@ function getProfile(username) {
 }
 
 function getRepos(username) {
-  return fetch(`https://api.github.com/users/${username}/repos?pre_page=100`, {
-    headers: {
-      authorization: `token ${process.env.authorization_token}`,
-    },
-  })
+  return fetch(`https://api.github.com/users/${username}/repos?pre_page=100`)
     .then((res) => res.json())
     .then((repos) => {
       if (repos.message) {
