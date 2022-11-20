@@ -2,7 +2,7 @@
   "name": "github-battle",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./app/index.jsx",
   "scripts": {
     "dev": "webpack serve",
     "build": "NODE_ENV='production' webpack",
