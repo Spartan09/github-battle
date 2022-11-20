@@ -3,7 +3,7 @@ export function fetchPopularRepos(language) {
     `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`,
     {
       headers: {
-        authorization: "token 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",
+        authorization: `token ${process.env.authorization_token}`,
       },
     }
   );
@@ -30,7 +30,7 @@ function getErrorMsg(message, username) {
 function getProfile(username) {
   return fetch(`https://api.github.com/users/${username}`, {
     headers: {
-      authorization: "token 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",
+      authorization: `token ${process.env.authorization_token}`,
     },
   })
     .then((res) => res.json())
@@ -46,7 +46,7 @@ function getProfile(username) {
 function getRepos(username) {
   return fetch(`https://api.github.com/users/${username}/repos?pre_page=100`, {
     headers: {
-      authorization: "token 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",
+      authorization: `token ${process.env.authorization_token}`,
     },
   })
     .then((res) => res.json())
