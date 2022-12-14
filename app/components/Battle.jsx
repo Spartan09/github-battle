@@ -90,26 +90,19 @@ PlayerPreview.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export default class Battle extends React.Component {
-  state = {
-    playerOne: null,
-    playerTwo: null,
-  };
+export default function Battle() {
+  const [playerOne, setPlayerOne] = React.useState(null);
+  const [playerTwo, setPlayerTwo] = React.useState(null);
 
-  handleSubmit = (id, player) => {
-    this.setState({
-      [id]: player,
-    });
-  };
+  const handleSubmit = (id, player) => id === 'playerOne'
+    ? setPlayerOne(player)
+    : setPlayerTwo(player)
 
-  handleReset = (id) => {
-    this.setState({
-      [id]: null,
-    });
-  };
+  const handleReset = (id) => id === 'playerOne'
+    ? setPlayerOne(null)
+    : setPlayerTwo(null)
 
-  render() {
-    const { playerOne, playerTwo } = this.state;
+
     const disabled = !playerOne || !playerTwo;
 
     return (
@@ -130,30 +123,31 @@ export default class Battle extends React.Component {
           {playerOne === null ? (
             <PlayerInput
               label="Player One"
-              onSubmit={(player) => this.handleSubmit("playerOne", player)}
+              onSubmit={(player) => handleSubmit("playerOne", player)}
             />
           ) : (
             <PlayerPreview
               label="Player One"
               username={playerOne}
-              onReset={() => this.handleReset("playerOne")}
+              onReset={() => handleReset("playerOne")}
             />
           )}
           {playerTwo === null ? (
             <PlayerInput
               label="Player Two"
-              onSubmit={(player) => this.handleSubmit("playerTwo", player)}
+              onSubmit={(player) => handleSubmit("playerTwo", player)}
             />
           ) : (
             <PlayerPreview
               label="Player Two"
               username={playerTwo}
-              onReset={() => this.handleReset("playerTwo")}
+              onReset={() => handleReset("playerTwo")}
             />
           )}
         </section>
         <Instructions />
       </main>
     );
-  }
 }
+
+
