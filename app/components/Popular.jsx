@@ -4,7 +4,7 @@ import { fetchPopularRepos } from "../utils/api";
 import Table from "./Table";
 
 function LanguagesNav({ selected, onUpdateLanguage }) {
-  const languages = ["All", "Javascript", "Typescript", "Rust", "Python"];
+  const languages = ["All", "Javascript", "Typescript", "Rust", "Python", "Go"];
   return (
     <select
       onChange={(e) => onUpdateLanguage(e.target.value)}
